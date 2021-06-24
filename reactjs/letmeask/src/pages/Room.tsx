@@ -1,14 +1,14 @@
-import { FormEvent, useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { FormEvent, useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
 
-import logoImg from "../assets/images/logo.svg";
+import logoImg from '../assets/images/logo.svg';
 
-import { Button } from "../components/Button";
-import { RoomCode } from "../components/RoomCode";
-import { useAuth } from "../hooks/useAuth";
-import { database } from "../services/firebase";
+import { Button } from '../components/Button';
+import { RoomCode } from '../components/RoomCode';
+import { useAuth } from '../hooks/useAuth';
+import { database } from '../services/firebase';
 
-import "../styles/rooms.scss";
+import '../styles/rooms.scss';
 
 type FirebaseQuestions = Record<
   string,
@@ -41,7 +41,7 @@ type RoomParams = {
 export function Room() {
   const { user } = useAuth();
   const params = useParams<RoomParams>();
-  const [newQuestion, setNewQuestion] = useState("");
+  const [newQuestion, setNewQuestion] = useState('');
   const [questions, setQuestions] = useState<Question[]>([]);
   const [title, setTitle] = useState();
 
@@ -51,20 +51,18 @@ export function Room() {
     console.log(roomId);
     const roomRef = database.ref(`rooms/${roomId}`);
 
-    roomRef.on("value", (room) => {
+    roomRef.on('value', (room) => {
       const databaseRoom = room.val();
       const firebaseQuestions: FirebaseQuestions = databaseRoom.questions ?? {};
 
       const parsedQuestions = Object.entries(firebaseQuestions).map(
-        ([key, value]) => {
-          return {
-            id: key,
-            content: value.content,
-            author: value.author,
-            isHighlighted: value.isHighlighted,
-            isAnswered: value.isAnswered,
-          };
-        }
+        ([key, value]) => ({
+          id: key,
+          content: value.content,
+          author: value.author,
+          isHighlighted: value.isHighlighted,
+          isAnswered: value.isAnswered,
+        }),
       );
 
       setTitle(databaseRoom.title);
@@ -75,12 +73,12 @@ export function Room() {
   async function handleSendQuestion(event: FormEvent) {
     event.preventDefault();
 
-    if (newQuestion.trim() === "") {
+    if (newQuestion.trim() === '') {
       return;
     }
 
     if (!user) {
-      throw new Error("You must be logged in");
+      throw new Error('You must be logged in');
     }
 
     const question = {
@@ -95,7 +93,7 @@ export function Room() {
 
     await database.ref(`rooms/${roomId}/questions`).push(question);
 
-    setNewQuestion("");
+    setNewQuestion('');
   }
 
   return (
