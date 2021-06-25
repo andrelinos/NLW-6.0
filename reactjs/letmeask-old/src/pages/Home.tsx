@@ -5,10 +5,11 @@ import illustrationImg from '../assets/images/illustration.svg';
 import logoImg from '../assets/images/logo.svg';
 import googleIconImg from '../assets/images/google-icon.svg';
 
+import { useAuth } from '../hooks/useAuth';
 import { database } from '../services/firebase';
 
 import { Button } from '../components/Button';
-import { useAuth } from '../hooks/useAuth';
+
 import '../styles/auth.scss';
 
 export function Home() {
@@ -20,8 +21,7 @@ export function Home() {
     if (!user) {
       await signInWithGoogle();
     }
-
-    history.push('/rooms/new');
+    console.log(user);
   }
 
   async function handleJoinRoom(event: FormEvent) {
@@ -38,28 +38,29 @@ export function Home() {
       return;
     }
 
-    if (roomRef.val().endedAt) {
-      alert('Room already closed.');
-      return;
-    }
-
     history.push(`/rooms/${roomCode}`);
   }
 
   return (
     <div id="page-auth">
       <aside>
-        <img src={illustrationImg} alt="Ilustração simbolizando perguntas e respostas" />
+        <img
+          src={illustrationImg}
+          alt="Ilustração simbolizando perguntas e respostas"
+        />
         <strong>Crie salas de Q&amp;A ao-vivo</strong>
-        <p>
-          Tire as dúvidas da sua audiência em tempo-real
-        </p>
+        <p>Tire as dúvidas da sua audiência em tempo-real</p>
       </aside>
 
       <main>
         <div className="main-content">
           <img src={logoImg} alt="Letmeask" />
-          <button onClick={handleCreateRoom} className="create-room">
+
+          <button
+            type="button"
+            onClick={handleCreateRoom}
+            className="create-room"
+          >
             <img src={googleIconImg} alt="Logo do Google" />
             Crie sua sala com o Google
           </button>
@@ -73,9 +74,7 @@ export function Home() {
               onChange={(event) => setRoomCode(event.target.value)}
               value={roomCode}
             />
-            <Button type="submit">
-              Entrar na sala
-            </Button>
+            <Button type="submit">Entrar na sala</Button>
           </form>
         </div>
       </main>
