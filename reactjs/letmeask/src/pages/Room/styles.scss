@@ -16,7 +16,7 @@
 
       > div {
         display: flex;
-        gap: 16px;
+        gap: 1rem;
 
         button {
           height: 40px;
@@ -41,10 +41,10 @@
       }
 
       span {
-        margin-left: 16px;
+        margin-left: 1rem;
         background: #e559f9;
         border-radius: 9999px;
-        padding: 8px 16px;
+        padding: 0.5rem 1rem;
         color: #FFF;
         font-weight: 500;
         font-size: 14px;
@@ -55,8 +55,8 @@
       textarea {
         width: 100%;
         border: 0;
-        padding: 16px;
-        border-radius: 8px;
+        padding: 1rem;
+        border-radius: 0.5rem;
         background: #fefefe;
         box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
         resize: vertical;
@@ -67,7 +67,7 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
-        margin-top: 16px;
+        margin-top: 1rem;
 
         .user-info {
           display: flex;
@@ -80,7 +80,7 @@
           }
 
           span {
-            margin-left: 8px;
+            margin-left: 0.5rem;
             color: #29292e;
             font-weight: 500;
             font-size: 14px;

@@ -1,6 +1,6 @@
 .button {
-  height: 3.125rem; // 50px
-  border-radius: 8px;
+  height: 3.125rem;
+  border-radius: 0.5rem;
   font-weight: 500;
   background: #835afd;
   color: #FFF;
@@ -16,7 +16,7 @@
   transition: filter 0.2s;
 
   img {
-    margin-right: 8px;
+    margin-right: 0.5rem;
   }
 
   &.outlined {

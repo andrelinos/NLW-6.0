@@ -1,11 +1,12 @@
 .question {
   background: #fefefe;
-  border-radius: 8px;
+  border-radius: 0.5rem;
   box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
   padding: 24px;
+  overflow: hidden;
 
   & + .question {
-    margin-top: 8px;
+    margin-top: 0.5rem;
   }
 
   &.highlighted {
@@ -22,6 +23,7 @@
   }
 
   p {
+    word-wrap:break-word;
     color: #29292e;
   }
 
@@ -30,19 +32,19 @@
     justify-content: space-between;
     align-items: center;
     margin-top: 24px;
-    
+
     .user-info {
       display: flex;
       align-items: center;
-  
+
       img {
         width: 32px;
         height: 32px;
         border-radius: 50%;
       }
-  
+
       span {
-        margin-left: 8px;
+        margin-left: 0.5rem;
         color: #737380;
         font-size: 14px;
       }
@@ -50,7 +52,7 @@
 
     > div {
       display: flex;
-      gap: 16px;
+      gap: 1rem;
     }
 
     button {
@@ -63,7 +65,7 @@
         display: flex;
         align-items: flex-end;
         color: #737380;
-        gap: 8px;
+        gap: 0.5rem;
 
         &.liked {
           color: #835afd;

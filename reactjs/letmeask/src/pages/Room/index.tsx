@@ -1,16 +1,14 @@
 import { FormEvent, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
-import logoImg from '../assets/images/logo.svg';
+import { Button } from '../../components/Button';
+import { Header } from '../../components/Header';
+import { Question } from '../../components/Question';
+import { useAuth } from '../../hooks/useAuth';
+import { useRoom } from '../../hooks/useRoom';
+import { database } from '../../services/firebase';
 
-import { Button } from '../components/Button';
-import { Question } from '../components/Question';
-import { RoomCode } from '../components/RoomCode';
-import { useAuth } from '../hooks/useAuth';
-import { useRoom } from '../hooks/useRoom';
-import { database } from '../services/firebase';
-
-import '../styles/rooms.scss';
+import './styles.scss';
 
 type RoomParamsType = {
   id: string
@@ -64,12 +62,7 @@ export function Room() {
 
   return (
     <div id="page-room">
-      <header>
-        <div className="content">
-          <img src={logoImg} alt="Letmeask" />
-          <RoomCode code={roomId} />
-        </div>
-      </header>
+      <Header />
 
       <main>
         <div className="room-title">
@@ -79,6 +72,7 @@ export function Room() {
 
         <form onSubmit={handleSendQuestion}>
           <textarea
+            wrap="hard"
             placeholder="O que você quer perguntas?"
             onChange={(event) => setNewQuestion(event.target.value)}
             value={newQuestion}
