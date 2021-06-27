@@ -6,7 +6,7 @@ import { Home } from './pages/Home';
 import { NewRoom } from './pages/NewRoom';
 import { Room } from './pages/Room';
 import { AdminRoom } from './pages/AdminRoom';
-import { RoomsMe } from './pages/RoomsMe';
+import { AdminRooms } from './pages/AdminRooms';
 
 function App() {
   return (
@@ -17,8 +17,8 @@ function App() {
           <Route path="/rooms/new" exact component={NewRoom} />
           <Route path="/rooms/:id" component={Room} />
 
-          <Route path="/admin/rooms" component={RoomsMe} />
-          <Route path="/admin/rooms/:id" component={AdminRoom} />
+          <Route path="/admin/rooms/:id" exact component={AdminRoom} />
+          <Route path="/admin/rooms" exact component={AdminRooms} />
         </Switch>
       </AuthContextProvider>
     </BrowserRouter>

@@ -1,10 +1,11 @@
 import { useParams, useHistory, Link } from 'react-router-dom';
 
+import { database } from '../../services/firebase';
+
 import { RoomCode } from '../Roomcode';
-import logoImg from '../../assets/images/logo.svg';
 import { Button } from '../Button';
 
-import { database } from '../../services/firebase';
+import logoImg from '../../assets/images/logo.svg';
 
 type RoomParams = {
   id: string
@@ -17,7 +18,7 @@ export function Header() {
 
   async function handleEndRoom() {
     await database.ref(`rooms/${roomId}`).update({
-      endedAt: true,
+      endedAt: new Date(),
     });
 
     history.push('/');
