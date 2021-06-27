@@ -16,11 +16,19 @@ type RoomParams = {
 }
 
 export function AdminRoom() {
-  // const { user } = useAuth()
+  const history = useHistory();
   const params = useParams<RoomParams>();
   const roomId = params.id;
 
   const { title, questions } = useRoom(roomId);
+
+  async function handleEndRoom() {
+    await database.ref(`rooms/${roomId}`).update({
+      endedAt: true,
+    });
+
+    history.push('/rooms/me');
+  }
 
   async function handleDeleteQuestion(questionId: string) {
     if (window.confirm('Tem certeza que deseja excluir essa pergunta?')) {

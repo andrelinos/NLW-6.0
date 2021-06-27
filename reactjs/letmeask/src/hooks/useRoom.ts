@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import { database } from '../services/firebase';
 import { useAuth } from './useAuth';
 
@@ -29,12 +30,24 @@ type QuestionType = {
 }
 
 export function useRoom(roomId: string) {
+  const history = useHistory();
   const { user } = useAuth();
   const [questions, setQuestions] = useState<QuestionType[]>([]);
   const [title, setTitle] = useState();
 
   useEffect(() => {
     const roomRef = database.ref(`rooms/${roomId}`);
+
+    async function roomIsClosed() {
+      const room = (await roomRef.get()).exists();
+
+      const { endedAt } = (await roomRef.get()).val();
+
+      if (room && endedAt) {
+        history.push('/');
+      }
+    }
+    roomIsClosed();
 
     roomRef.on('value', (room) => {
       const databaseRoom = room.val();
@@ -47,9 +60,11 @@ export function useRoom(roomId: string) {
         isHighlighted: value.isHighlighted,
         isAnswered: value.isAnswered,
         likeCount: Object.values(value.likes ?? {}).length,
-        likeId: Object.entries(value.likes ?? {})
+        likeId: Object
+          .entries(value.likes ?? {})
           .find(([key, like]) => like.authorId === user?.id)?.[0],
-      }));
+      }
+      ));
 
       setTitle(databaseRoom.title);
       setQuestions(parsedQuestions);
@@ -60,5 +75,8 @@ export function useRoom(roomId: string) {
     };
   }, [roomId, user?.id]);
 
-  return { questions, title };
+  return {
+    questions,
+    title,
+  };
 }

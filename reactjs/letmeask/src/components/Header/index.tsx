@@ -1,4 +1,4 @@
-import { useParams, useHistory } from 'react-router-dom';
+import { useParams, useHistory, Link } from 'react-router-dom';
 
 import { RoomCode } from '../Roomcode';
 import logoImg from '../../assets/images/logo.svg';
@@ -17,7 +17,7 @@ export function Header() {
 
   async function handleEndRoom() {
     await database.ref(`rooms/${roomId}`).update({
-      endedAt: new Date(),
+      endedAt: true,
     });
 
     history.push('/');
@@ -26,7 +26,10 @@ export function Header() {
   return (
     <header>
       <div className="content">
-        <img src={logoImg} alt="Letmeask" />
+        <Link to="/">
+          <img src={logoImg} alt="Logo letmeask" />
+        </Link>
+        {/* <ButtonToggleTheme /> */}
         <div>
           <RoomCode code={roomId} />
           <Button isOutlined onClick={handleEndRoom}>Encerrar sala</Button>
