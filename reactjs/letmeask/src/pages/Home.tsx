@@ -73,7 +73,6 @@ export function Home() {
               onChange={(event) => setRoomCode(event.target.value)}
               value={roomCode}
             />
-            <h2> -MdC6IQiCJKZjdvSWzQm</h2>
             <Button type="submit">
               Entrar na sala
             </Button>
