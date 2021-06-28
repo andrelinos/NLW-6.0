@@ -26,7 +26,7 @@ This project was developed using the following technologies:
 - [Chakra.ui](https://chakra-ui.com/)
 - [Emotion](https://emotion.sh/docs/introduction)
 - [Framer Motion](https://www.framer.com/)
-- [Sass](https://sass-lang.com/)
+
 ## 🚀 Getting started
 
 Clone the project and access the folder.
