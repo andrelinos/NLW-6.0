@@ -1,4 +1,5 @@
 import { useHistory } from 'react-router-dom';
+import { Flex, FormControl, Input } from '@chakra-ui/react';
 
 import { FormEvent, useState } from 'react';
 import illustrationImg from '../assets/images/illustration.svg';
@@ -47,27 +48,30 @@ export function Home() {
   }
 
   return (
-    <div id="page-auth">
-      <aside>
+    <Flex w="100vw" h="100vh">
+      <Flex flex="1" align="center" bg="purple.500" flexDir="column" justify="center">
         <img src={illustrationImg} alt="Ilustração simbolizando perguntas e respostas" />
         <strong>Crie salas de Q&amp;A ao-vivo</strong>
         <p>
           Tire as dúvidas da sua audiência em tempo-real
         </p>
-      </aside>
+      </Flex>
 
-      <main>
-        <div className="main-content">
+      <Flex flex="1" align="center" justify="center" flexDir="column">
+        <Flex flexDir="column">
           <img src={logoImg} alt="Letmeask" />
-          <button onClick={handleCreateRoom} className="create-room">
+          <Button
+            onClick={handleCreateRoom}
+            className="create-room"
+          >
             <img src={googleIconImg} alt="Logo do Google" />
             Crie sua sala com o Google
-          </button>
+          </Button>
 
           <div className="separator">ou entre em uma sala</div>
 
-          <form onSubmit={handleJoinRoom}>
-            <input
+          <FormControl onSubmit={handleJoinRoom}>
+            <Input
               type="text"
               placeholder="Digite o código da sala"
               onChange={(event) => setRoomCode(event.target.value)}
@@ -76,9 +80,9 @@ export function Home() {
             <Button type="submit">
               Entrar na sala
             </Button>
-          </form>
-        </div>
-      </main>
-    </div>
+          </FormControl>
+        </Flex>
+      </Flex>
+    </Flex>
   );
 }

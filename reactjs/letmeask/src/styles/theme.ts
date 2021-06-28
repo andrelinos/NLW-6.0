@@ -7,6 +7,9 @@ export const theme = extendTheme({
       100: '#F0F0F0',
       900: '#141414',
     },
+    purple: {
+      500: '#835afd',
+    },
   },
   styles: {
     global: {

@@ -1,6 +1,5 @@
 import { ButtonHTMLAttributes } from 'react';
-
-import './styles.scss';
+import { Button as CkButton } from '@chakra-ui/react';
 
 type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
   isOutlined?: boolean;
@@ -8,7 +7,9 @@ type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
 
 export function Button({ isOutlined = false, ...props }: ButtonProps) {
   return (
-    <button
+    <CkButton
+      w="100%"
+      h="3rem"
       className={`button ${isOutlined ? 'outlined' : ''}`}
       {...props}
     />
